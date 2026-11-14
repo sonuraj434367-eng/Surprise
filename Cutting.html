@@ -3,100 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Surprise - Kaat Diya</title>
+<title>Surprise - Love</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:#000;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-  
-  .stage{position:relative;width:300px;height:420px;overflow:visible}
-  
-  .photo-wrap{position:relative;width:100%;height:100%;overflow:visible;border:4px solid #fff;border-radius:10px}
-  
-  .half{
-    position:absolute;
-    top:0;
-    width:100%;
-    height:100%;
-    background-size:300px 420px;
-    background-repeat:no-repeat;
-    background-position:center;
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  
-  /* Left aur Right pieces with White Shadow/Glow on cut edges */
+  body{
+    background: #000;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* 9:16 RATIO - 360 x 640 Mobile Screen */
+  .stage{
+    position: relative;
+    width: 360px;
+    height: 640px;
+    overflow: hidden;
+  }
+
+  .photo-wrap{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .half{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 360px 640px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* DIAGONAL CUT (Top-Right to Bottom-Left) with White Glow/Shadow on edges */
   .left{
-    clip-path:polygon(0 0, 100% 0, 0 100%);
-    filter: drop-shadow(4px 4px 6px rgba(255, 255, 255, 0.7));
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    filter: drop-shadow(3px 3px 4px rgba(255, 255, 255, 0.8));
   }
   .right{
-    clip-path:polygon(100% 0, 100% 100%, 0 100%);
-    filter: drop-shadow(-4px -4px 6px rgba(255, 255, 255, 0.7));
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    filter: drop-shadow(-3px -3px 4px rgba(255, 255, 255, 0.8));
   }
 
-  /* Cutting ke baad tukde alag hokar screen par hi ruk jayenge (opacity 1 rahegi) */
-  .cut .left{animation:fallL 1.2s ease forwards}
-  .cut .right{animation:fallR 1.2s ease forwards}
-  
+  /* Cut hone ke baad tukde halka sa alag hokar wahi screen par ruk jayenge */
+  .cut .left{ animation: fallL 0.6s 0.3s ease forwards; }
+  .cut .right{ animation: fallR 0.6s 0.3s ease forwards; }
+
   @keyframes fallL{
-    100%{transform:translate(-18px, 15px) rotate(-4deg); opacity:1;}
+    100%{
+      transform: translate(-12px, 12px) rotate(-2deg); 
+      opacity: 1;
+    }
   }
   @keyframes fallR{
-    100%{transform:translate(18px, -15px) rotate(4deg); opacity:1;}
+    100%{
+      transform: translate(12px, -12px) rotate(2deg); 
+      opacity: 1;
+    }
   }
 
-  .cut-line{position:absolute;top:-50px;left:50%;width:3px;height:0;background:#fff;box-shadow:0 0 12px #fff;z-index:5;transform:translateX(-50%) rotate(-35deg);opacity:0}
-  .cut .cut-line{animation:lineShow 0.7s ease forwards}
-  @keyframes lineShow{0%{opacity:1;height:0}50%{opacity:1;height:520px}100%{opacity:0;height:520px}}
-
-  /* CHAKU ANIMATION */
+  /* FAST CHAKU ANIMATION */
   #chaku{
-    position:absolute;
-    top:-900px;
-    left:450px;
-    width:80px;
-    z-index:10;
-    transform:rotate(45deg);
-    filter:drop-shadow(10px 15px 15px rgba(0,0,0,0.7));
-    opacity:0
+    position: absolute;
+    top: -500px;
+    left: 600px;
+    width: 75px;
+    z-index: 10;
+    transform: rotate(45deg);
+    filter: drop-shadow(10px 15px 15px rgba(0,0,0,0.7));
+    opacity: 0;
   }
   #chaku svg{
-    width:100%;
-    height:auto;
-    display:block
+    width: 100%;
+    height: auto;
+    display: block;
   }
   .cut #chaku{
-    animation:chakuCut 2.7s ease forwards
+    animation: chakuCut 0.5s ease forwards;
   }
   @keyframes chakuCut{
     0%{
-      top:-900px;
-      left:690px;
-      transform:rotate(250deg) scaleX(-1);
-      opacity:1
+      top: -500px;
+      left: 550px;
+      transform: rotate(230deg) scaleX(-1);
+      opacity: 1;
     }
     100%{
-      top:600px;
-      left:-280px;
-      transform:rotate(250deg) ScaleX(-1);
-      opacity:0
+      top: 650px;
+      left: -100px;
+      transform: rotate(230deg) scaleX(-1);
+      opacity: 1;
     }
   }
 
   /* MESSAGE WITH BLACK SHADOW */
   #msg{
-    position:absolute;
-    top:15%;
-    left:50%;
-    transform:translate(-50%,-50%) scale(0);
-    color:#fff;
-    font-size:28px;
-    font-weight:bold;
-    text-align:center;
-    z-index:20;
-    text-shadow: 3px 3px 6px #000, -2px -2px 4px #000, 0 0 15px #000;
-    white-space:nowrap
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    color: #fff;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 20;
+    text-shadow: 3px 3px 6px #000, -3px -3px 6px #000, 0 0 20px #000;
+    white-space: nowrap;
   }
-  .cut #msg{animation:pop 0.5s 1.4s ease forwards}
-  @keyframes pop{to{transform:translate(-50%,-50%) scale(1); opacity:1;}}
+  .cut #msg{
+    animation: pop 0.4s 0.4s ease forwards;
+  }
+  @keyframes pop{
+    to{
+      transform: translate(-50%,-50%) scale(1); 
+      opacity: 1;
+    }
+  }
 </style>
 </head>
 <body>
@@ -104,8 +136,7 @@
   <div class="photo-wrap">
     <div class="half left"></div>
     <div class="half right"></div>
-    <div class="cut-line"></div>
-    <div id="msg">Kaat Diya! 😂🔪</div>
+    <div id="msg">Continue</div>
   </div>
 
   <!-- CHAKU -->
@@ -121,13 +152,11 @@
         <stop offset="85%" stop-color="#9a9a9a"/>
         <stop offset="100%" stop-color="#c9c9c9"/>
       </linearGradient>
-
       <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="white" stop-opacity="0.9"/>
         <stop offset="50%" stop-color="white" stop-opacity="0"/>
         <stop offset="100%" stop-color="white" stop-opacity="0.3"/>
       </linearGradient>
-
       <linearGradient id="wood" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%" stop-color="#2b1400"/>
         <stop offset="20%" stop-color="#5a2d00"/>
@@ -136,7 +165,6 @@
         <stop offset="75%" stop-color="#4a2300"/>
         <stop offset="100%" stop-color="#1f0e00"/>
       </linearGradient>
-
       <linearGradient id="metal" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%" stop-color="#7a7a7a"/>
         <stop offset="30%" stop-color="#e8e8e8"/>
@@ -144,12 +172,10 @@
         <stop offset="70%" stop-color="#a8a8a8"/>
         <stop offset="100%" stop-color="#666"/>
       </linearGradient>
-
       <filter id="soft">
         <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.3"/>
       </filter>
     </defs>
-
     <path d="M78 8 Q78 2 85 2 L115 2 Q122 2 122 8 L124 135 Q124 148 112 148 L88 148 Q76 148 76 135 Z" fill="url(#wood)" stroke="#120800" stroke-width="2" filter="url(#soft)"/>
     <path d="M84 15 Q100 18 116 14" stroke="#3a1a00" stroke-width="1.5" fill="none" opacity="0.7"/>
     <path d="M83 40 Q100 44 117 38" stroke="#3a1a00" stroke-width="1.5" fill="none" opacity="0.6"/>
@@ -157,20 +183,16 @@
     <path d="M83 90 Q100 94 117 88" stroke="#3a1a00" stroke-width="1.5" fill="none" opacity="0.6"/>
     <path d="M83 115 Q100 119 117 113" stroke="#3a1a00" stroke-width="1.5" fill="none" opacity="0.6"/>
     <path d="M84 130 Q100 134 116 130" stroke="#2a1200" stroke-width="1.5" fill="none" opacity="0.8"/>
-
     <circle cx="100" cy="30" r="8" fill="url(#metal)" stroke="#444" stroke-width="1.5"/>
     <circle cx="100" cy="30" r="3" fill="#fff" opacity="0.8"/>
     <circle cx="100" cy="75" r="8" fill="url(#metal)" stroke="#444" stroke-width="1.5"/>
     <circle cx="100" cy="75" r="3" fill="#fff" opacity="0.8"/>
     <circle cx="100" cy="120" r="8" fill="url(#metal)" stroke="#444" stroke-width="1.5"/>
     <circle cx="100" cy="120" r="3" fill="#fff" opacity="0.8"/>
-
     <ellipse cx="100" cy="8" rx="12" ry="3" fill="#000" opacity="0.5"/>
-
     <rect x="72" y="148" width="56" height="18" rx="4" fill="url(#metal)" stroke="#555" stroke-width="1.5"/>
     <line x1="72" y1="154" x2="128" y2="154" stroke="white" stroke-width="1" opacity="0.7"/>
     <line x1="72" y1="160" x2="128" y2="160" stroke="black" stroke-width="1" opacity="0.2"/>
-
     <path d="M74 166 L126 166 L126 320 Q126 440 108 490 Q95 520 70 532 Q58 538 56 530 Q55 525 62 515 Q78 490 78 430 L74 340 Z" fill="url(#bladeGrad)" stroke="#777" stroke-width="1.8"/>
     <path d="M126 166 L126 320 Q126 440 108 490 Q100 508 84 522 L82 500 Q100 460 102 380 L102 166 Z" fill="#a8a8a8" opacity="0.4"/>
     <path d="M74 166 L74 340 L78 430 Q78 495 60 518" fill="none" stroke="#fff" stroke-width="2.5" opacity="0.9"/>
@@ -187,10 +209,10 @@
   const img = "cut-photo.jpg";
   document.querySelector('.left').style.backgroundImage = `url(${img})`;
   document.querySelector('.right').style.backgroundImage = `url(${img})`;
-  
-  // Page load hote hi turant photo screen par dikhegi, thodi der baad animation start hoga
+
+  // Page load hote hi tezi se chaku aayega aur kaat dega
   window.onload = function(){
-    setTimeout(()=>{ document.getElementById('stage').classList.add('cut'); }, 800);
+    setTimeout(()=>{ document.getElementById('stage').classList.add('cut'); }, 400);
   };
 </script>
 </body>
